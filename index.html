@@ -37,7 +37,7 @@
                                 <button class="btn btn-primary" type="button" @click="addNewTask(newTask)">Add</button>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item list-group-item-light d-flex h-100 align-items-center justify-content-between" v-for="(task, index) in toDoList">
+                                <li class="list-group-item list-group-item-light d-flex h-100 align-items-center justify-content-between" v-for="(task, index) in toDoList" @click="task.done = !task.done">
                                     <span class="d-block" :class="task.done === true ? 'strike' : ''">{{task.text.charAt(0).toUpperCase() + task.text.substring(1)}}</span>
                                     <button class="btn btn-danger py-1 px-3" @click="removeTask(task)">x</button>
                                 </li>
