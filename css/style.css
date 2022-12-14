@@ -5,4 +5,14 @@ header h1{
 
 ul span.strike{
     text-decoration: line-through;
+    background-color: rgba(100, 256, 100, .1);
+}
+
+
+main ul li{
+    cursor: pointer;
+}
+
+main button{
+    cursor: default;
 }
