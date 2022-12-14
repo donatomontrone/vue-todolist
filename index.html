@@ -30,10 +30,17 @@
             <main class="pt-5">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4" id="lined-sheet">
-                            <h2>Lista delle cose da fare oggi</h2>
-                            <ul class="list-unstyled">
-                                <li class="p-0"  v-for="(item, index) in toDoList" :class="item.done === true ? 'strike' : ''">{{item.text}}</li>
+                        <div class="col-12" id="lined-sheet">
+                            <h2>TASK</h2>
+                            <div class="input-group py-4">
+                                <input type="text" class="form-control" placeholder="Add new task" v-model.trim="newTask" @keyUp.enter="addNewTask(newTask)">
+                                <button class="btn btn-primary" type="button" @click="addNewTask(newTask)">Add</button>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-light d-flex h-100 align-items-center justify-content-between" v-for="(task, index) in toDoList">
+                                    <span class="d-block" :class="task.done === true ? 'strike' : ''">{{task.text.charAt(0).toUpperCase() + task.text.substring(1)}}</span>
+                                    <button class="btn btn-danger py-1 px-3" @click="removeTask(task)">x</button>
+                                </li>
                             </ul>
                         </div>
                     </div>

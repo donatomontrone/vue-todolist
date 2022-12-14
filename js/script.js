@@ -16,27 +16,44 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            newTask : '',
             toDoList : [
                     {
-                        text: 'Fare i compiti', 
+                        text: 'fare i compiti', 
                         done: false
                     }, 
                     {
-                        text: 'Fare la spesa', 
+                        text: 'fare la spesa', 
                         done: true
                     }, 
                     {
-                        text: 'Fare il bucato', 
+                        text: 'fare il bucato', 
                         done: false
                     },
                     {
-                        text: 'Fare l\'esercizio', 
+                        text: 'fare l\'esercizio', 
                         done: false 
                     },
                     ]
         }
     },
     methods : {
-
+        addNewTask(content){
+            if (content != '' && content.length >= 10 && (!this.toDoList.some(item => item.text === content))) {
+                this.toDoList.push({text : content, done : false});
+                this.clearUserInput();
+            } else {
+                alert('Syntax error when entering the task.')
+            }
+        },
+        clearUserInput(){
+            this.newTask = '';
+        },
+        removeTask(taskToRemove){
+            const taskIndex = this.toDoList.indexOf(taskToRemove);
+            if (taskIndex > -1) {
+                this.toDoList.splice(taskToRemove, 1);
+            }
+        }
     }
 }).mount('#app')
